@@ -1,0 +1,13 @@
+.signup-form {
+    display: flex;
+    border: 1px solid black;
+    flex-direction: column;
+    gap: 10px;
+    margin: 150px auto;
+    padding: 10px;
+    width: 300px;
+}
+
+.feedback {
+    display: none;
+}
