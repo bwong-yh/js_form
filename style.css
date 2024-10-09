@@ -8,6 +8,18 @@
     width: 300px;
 }
 
+input[type='text']:focus {
+    outline: none;
+}
+
 .feedback {
     display: none;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+.success {
+    border: 2px solid green;
 }
