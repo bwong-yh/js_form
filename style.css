@@ -8,7 +8,7 @@
     width: 300px;
 }
 
-input[type='text']:focus {
+input:not([type='submit']):focus {
     outline: none;
 }
 

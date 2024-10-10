@@ -5,6 +5,21 @@ const usernamePattern = /^\w{6,}$/;
 // ensure at least 6 characters long, 1 symbol and no whitespace
 const passwordPattern = /^(?=.*\w)(?=.*\W)(?!.*\s).{6,}$/;
 
+// functions
+const getStatusColor = status => {
+  switch (status) {
+    case 'error':
+      return 'red';
+    case 'success':
+      return 'green';
+  }
+};
+
+const displayMessage = (status, message) => {
+  feedback.style.color = getStatusColor(status);
+  feedback.innerText = message;
+};
+
 form.addEventListener('submit', e => {
   // prevent flashing when submitting the form
   e.preventDefault();
@@ -16,21 +31,24 @@ form.addEventListener('submit', e => {
   feedback.style.display = 'block';
 
   if (!usernamePattern.test(username)) {
-    feedback.style.color = 'red';
-    feedback.innerText =
-      'username must contain letters and numbers only & at least 6 characters long';
+    displayMessage(
+      'error',
+      'username must contain letters and numbers only & at least 6 characters long'
+    );
     return;
   }
 
   if (!passwordPattern.test(password)) {
-    feedback.style.color = 'red';
-    feedback.innerText =
-      'password must be at least 6 characters long with one symbol and no whitespace';
+    displayMessage(
+      'error',
+      'password must be at least 6 characters long with one symbol and no whitespace'
+    );
+    form.password.setAttribute('class', 'error');
     return;
   }
 
-  feedback.style.color = 'green';
-  feedback.innerText = 'username is valid';
+  form.password.setAttribute('class', 'success');
+  displayMessage('success', 'thanks for signing up');
 });
 
 // keyup event for live feedback
